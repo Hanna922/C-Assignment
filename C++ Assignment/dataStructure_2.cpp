@@ -11,18 +11,18 @@ class Bizcard {
 private:
 	char* name;
 	char* address;
-	__int64 office_phone;
-	__int64 mobile_phone;
+	long long int office_phone;
+	long long int mobile_phone;
 public:
 	Bizcard() {};
-	Bizcard(const char* name, const char* address, __int64 office_phone, __int64 mobile_phone);
+	Bizcard(const char* name, const char* address, long long int office_phone, long long int mobile_phone);
 	Bizcard(const Bizcard& copy);
 	Bizcard& operator=(const Bizcard& ref);
 	~Bizcard();
 	void ShowInfo();
 };
 
-Bizcard::Bizcard(const char* name, const char* address, __int64 office_phone, __int64 mobile_phone) {
+Bizcard::Bizcard(const char* name, const char* address, long long int office_phone, long long int mobile_phone) {
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 	this->address = new char[strlen(address) + 1];
@@ -54,15 +54,13 @@ Bizcard& Bizcard::operator=(const Bizcard& ref)
 }
 
 Bizcard::~Bizcard() {
-	delete[] name;
-	delete[] address;
 }
 
 void Bizcard::ShowInfo() {
-	cout << "이름 : " << name << endl;
-	cout << "주소 : " << address << endl;
-	cout << "사무실 전화번호 : " << office_phone << endl;
-	cout << "핸드폰 전화번호 : " << mobile_phone << endl;
+	cout << "name : " << name << endl;
+	cout << "address : " << address << endl;
+	cout << "office_phone : " << office_phone << endl;
+	cout << "mobile_phone : " << mobile_phone << endl;
 }
 
 template <class T>
@@ -98,14 +96,14 @@ Bag<T>::~Bag() {
 
 template<class T>
 inline int Bag<T>::Size() const {
-	cout << "Bag의 Size는 " << top + 1 << endl;
+	cout << "Bag's Size : " << top + 1 << endl;
 	return top + 1;
 }
 
 template<class T>
 inline bool Bag<T>::IsEmpty() const {
 	bool value = Size() == 0;
-	cout << "Bag의 IsEmpty 여부는 " << value << endl;
+	cout << "Bag's IsEmpty : " << value << endl;
 	return value;
 }
 
@@ -115,9 +113,11 @@ inline T& Bag<T>::Element() const {
 	if (value) {
 		cout << "Bag is empty" << endl;
 	}
-	std::uniform_int_distribution<int> dis(0, sizeof(array) / sizeof(array[0]));
-	int ranValue = dis(gen);
-	return array[ranValue];
+	else {
+		std::uniform_int_distribution<int> dis(0, sizeof(array) / sizeof(array[0]));
+		int ranValue = dis(gen);
+		return array[ranValue];
+	}
 }
 
 template<class T>
@@ -150,10 +150,9 @@ void Bag<T>::Pop() {
 }
 
 int main() {
-	Bizcard a("CCC", "CCC", 12345678901, 12345678912);
-	Bizcard b("AAA", "AAA", 12345678901, 12345678912);
-	Bizcard c("BBB", "BBB", 12345678901, 12345678912);
-	a.ShowInfo();
+	Bizcard a("AAA", "AAA", 12345678901, 12345678912);
+	Bizcard b("BBB", "BBB", 12345678901, 12345678912);
+	Bizcard c("CCC", "CCC", 12345678901, 12345678912);
 
 	Bag<Bizcard> myBag;
 	cout << myBag.Size() << endl;
@@ -164,7 +163,7 @@ int main() {
 	myBag.Push(a);
 	myBag.Push(b);
 	myBag.Push(c);
-	cout << myBag.Size() << endl;
+	myBag.Size();
 	myBag.IsEmpty();
 	Bizcard test2 = myBag.Element();
 	test2.ShowInfo();
@@ -173,14 +172,14 @@ int main() {
 	myBag.Push(a);
 	myBag.Push(a);
 	myBag.Push(a);
-	cout << myBag.Size() << endl;
+	myBag.Size();
 	myBag.IsEmpty();
 	Bizcard test3 = myBag.Element();
 	test3.ShowInfo();
 	
 	myBag.Pop();
 	myBag.Pop();
-	cout << myBag.Size() << endl;
+	myBag.Size();
 	myBag.IsEmpty();
 	Bizcard test4 = myBag.Element();
 	test4.ShowInfo();
