@@ -23,9 +23,9 @@ public:
 	//Chain manipulation operations
 	void insertFront(T data); //(3)
 	void insertBack(T data); //(4)
-	int front(); //(5)
-	int back(); //(6)
-	int get(int i); //(7)
+	T front(); //(5)
+	T back(); //(6)
+	T get(int i); //(7)
 	void deleteFront(); //(8)
 	void deleteBack(); //(9)
 	void insert(T data, int index); //(10)
@@ -96,7 +96,7 @@ public:
 
 template<class T>
 Chain<T>::~Chain() {
-	
+	delete first, last;
 }
 
 template<class T>
@@ -130,17 +130,17 @@ void Chain<T>::insertBack(T data) {
 }
 
 template<class T>
-int Chain<T>::front() {
+T Chain<T>::front() {
 	return this->first->data;
 }
 
 template<class T>
-int Chain<T>::back() {
+T Chain<T>::back() {
 	return this->last->data;
 }
 
 template<class T>
-int Chain<T>::get(int index) {
+T Chain<T>::get(int index) {
 	ChainNode<T>* x = this->first;
 	for (int i = 0; i < index; i++) {
 		x = x->link;
@@ -204,7 +204,7 @@ int main() {
 	Number num7 = 7;
 	Number num8 = 8;
 	Number num9 = 9;
-	Chain<int> chain;
+	Chain<Number> chain;
 	chain.insertFront(num1);
 	chain.insertBack(num2);
 	chain.insertBack(num3);
@@ -215,7 +215,7 @@ int main() {
 	chain.insertBack(num8);
 	chain.insertBack(num9); //test1
 
-	Chain<int>::ChainIterator yi = chain.begin();
+	Chain<Number>::ChainIterator yi = chain.begin();
 	
 	cout << "test2 : ";
 	for (yi = chain.begin(); yi != chain.end(); ++yi) {
