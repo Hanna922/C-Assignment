@@ -72,7 +72,7 @@ pair<K, E>* BST<K, E>::Get(const K& k) const
 	}
 
 	if (currentNode == NULL) {
-		cout << "킷값이 " << k << "인 노드는 없습니다.";
+		cout << "There is no " << k;
 	}
 
 	return 0;
@@ -130,7 +130,7 @@ void BST<K, E>::Delete(const K& k) {
 		}
 	}
 	if (deleteNode == NULL) {
-		cout << "삭제할 노드 없음" << endl;
+		cout << "There are no node to delete." << endl;
 	}
 
 	// case1
