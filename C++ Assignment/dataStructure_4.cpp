@@ -32,7 +32,6 @@ public:
 	void Inorder();
 	void Inorder(TreeNode<pair<K, E>>* currentNode);
 	
-	template<class K, class E>
 	friend ostream& operator<<(ostream& os, const pair<K, E>& p);
 };
 
